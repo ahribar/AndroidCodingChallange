@@ -4,6 +4,7 @@ import android.app.Application
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
+import si.development.ahill.beeniusdemo.data.database.BeeniusDemoDatabase
 import si.development.ahill.beeniusdemo.data.rest.BeeniusDemoServiceFactory
 import si.development.ahill.beeniusdemo.data.rest.services.UserRestService
 
@@ -17,6 +18,11 @@ class BeeniusDemoApp : Application() {
         super.onCreate()
         CoroutineScope(IO).launch {
             BeeniusDemoServiceFactory().create(UserRestService::class.java).getUsers()
+        }
+
+        val database: BeeniusDemoDatabase = BeeniusDemoDatabase.getInstance(this)
+        CoroutineScope(IO).launch {
+            database.provideUserDao().fetchAll()
         }
     }
 }
