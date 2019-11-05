@@ -1,10 +1,12 @@
 package si.development.ahill.beeniusdemo.data.database
 
+import android.content.Context
 import androidx.room.Database
-import androidx.room.DatabaseConfiguration
-import androidx.room.InvalidationTracker
+import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteOpenHelper
+import si.development.ahill.beeniusdemo.data.database.daos.AlbumDao
+import si.development.ahill.beeniusdemo.data.database.daos.PhotoDao
+import si.development.ahill.beeniusdemo.data.database.daos.UserDao
 import si.development.ahill.beeniusdemo.data.models.AlbumEntity
 import si.development.ahill.beeniusdemo.data.models.PhotoEntity
 import si.development.ahill.beeniusdemo.data.models.UserEntity
@@ -22,17 +24,31 @@ import si.development.ahill.beeniusdemo.data.models.UserEntity
     version = 1,
     exportSchema = false
 )
-class BeeniusDemoDatabase : RoomDatabase() {
+abstract class BeeniusDemoDatabase : RoomDatabase() {
 
-    override fun createOpenHelper(config: DatabaseConfiguration?): SupportSQLiteOpenHelper {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    abstract fun provideUserDao(): UserDao
+    abstract fun provideAlbumDao(): AlbumDao
+    abstract fun providePhotoDao(): PhotoDao
 
-    override fun createInvalidationTracker(): InvalidationTracker {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    companion object {
 
-    override fun clearAllTables() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        private const val DATABASE_NAME = "BeeniusDemoDatabase"
+
+        @Volatile
+        private var instance: BeeniusDemoDatabase? = null
+
+        fun getInstance(context: Context): BeeniusDemoDatabase =
+            instance ?: synchronized(this) {
+                Room.databaseBuilder(context, BeeniusDemoDatabase::class.java, DATABASE_NAME)
+                    .fallbackToDestructiveMigration()
+                    .build()
+                    .also {
+                        instance = it
+                    }
+            }
+
+        fun destroyInstance() {
+            instance = null
+        }
     }
 }
