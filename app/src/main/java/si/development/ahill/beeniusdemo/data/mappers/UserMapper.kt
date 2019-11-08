@@ -2,14 +2,18 @@ package si.development.ahill.beeniusdemo.data.mappers
 
 import si.development.ahill.beeniusdemo.data.models.UserEntity
 import si.development.ahill.beeniusdemo.data.rest.models.UserRestModel
+import si.development.ahill.beeniusdemo.domain.mappers.DomainModelMapper
+import si.development.ahill.beeniusdemo.domain.models.User
+import javax.inject.Inject
 
 /**
  * Created by Andraž Hribar on 5. 11. 2019.
  * andraz.hribar@gmail.com
  */
-class UserMapper {
+class UserMapper @Inject constructor() : DataModelMapper<UserRestModel, UserEntity>,
+    DomainModelMapper<UserEntity, User> {
 
-    fun mapAsEntity(restModel: UserRestModel): UserEntity =
+    override fun mapAsEntity(restModel: UserRestModel): UserEntity =
         UserEntity(
             id = restModel.id ?: 0L,
             email = restModel.email,
@@ -26,5 +30,12 @@ class UserMapper {
             companyBs = restModel.company?.bs,
             companyCatchPhrase = restModel.company?.catchPhrase,
             companyName = restModel.company?.name
+        )
+
+    override fun mapAsPresentable(entity: UserEntity): User =
+        User(
+            id = entity.id,
+            username = entity.username,
+            name = entity.name
         )
 }

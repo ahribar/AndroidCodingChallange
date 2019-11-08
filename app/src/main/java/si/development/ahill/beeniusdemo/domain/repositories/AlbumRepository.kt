@@ -8,7 +8,7 @@ import si.development.ahill.beeniusdemo.domain.models.Album
  */
 interface AlbumRepository {
 
-    fun getAlbumsByUserId(userId: Long): List<Album>
+    suspend fun getAlbumsByUserId(userId: Long): List<Album>
 
-    fun getAlbumById(albumId: Long): Album?
+    suspend fun getAlbumById(albumId: Long): Album?
 }
