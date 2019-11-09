@@ -6,6 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import si.development.ahill.beeniusdemo.BuildConfig
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 import okhttp3.logging.HttpLoggingInterceptor.Level.BODY as LOG_LEVEL_BODY
 import okhttp3.logging.HttpLoggingInterceptor.Level.NONE as LOG_LEVEL_NONE
 
@@ -13,7 +14,7 @@ import okhttp3.logging.HttpLoggingInterceptor.Level.NONE as LOG_LEVEL_NONE
  * Created by Andraž Hribar on 4. 11. 2019.
  * andraz.hribar@gmail.com
  */
-class BeeniusDemoServiceFactory {
+class BeeniusDemoServiceFactory @Inject constructor() {
 
     private val retrofit: Retrofit = createRetrofit()
 
