@@ -1,6 +1,5 @@
 package si.development.ahill.beeniusdemo.presentation.albums
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.DividerItemDecoration
 import kotlinx.android.synthetic.main.fragment_albums.*
+import si.development.ahill.beeniusdemo.R
 import si.development.ahill.beeniusdemo.databinding.FragmentAlbumsBinding
 
 class AlbumsFragment : Fragment(), AlbumsContract.View {
@@ -43,6 +43,8 @@ class AlbumsFragment : Fragment(), AlbumsContract.View {
                 actions = this@AlbumsFragment
                 state = viewModel
                 NavigationUI.setupWithNavController(toolbar, findNavController())
+                toolbar.title =
+                    context?.getString(R.string.fragment_albums_title_, arguments.author)
                 recyclerAlbums.setHasFixedSize(true)
                 recyclerAlbums.addItemDecoration(
                     DividerItemDecoration(
@@ -81,7 +83,12 @@ class AlbumsFragment : Fragment(), AlbumsContract.View {
     }
 
     override fun selectAlbum(albumId: Long) {
-        // TODO: Implement
+        findNavController().navigate(
+            AlbumsFragmentDirections.actionAlbumsToPhotos(
+                albumId,
+                arguments.author
+            )
+        )
     }
 
     //endregion AlbumsContract.View

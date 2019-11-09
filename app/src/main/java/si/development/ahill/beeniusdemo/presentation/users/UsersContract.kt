@@ -14,7 +14,7 @@ interface UsersContract {
     interface View : BaseView<ViewModel, Presenter> {
         fun refreshData()
 
-        fun selectUser(userId: Long)
+        fun selectUser(userId: Long, author: String)
     }
 
     interface Presenter : BasePresenter<ViewModel> {
