@@ -2,6 +2,7 @@ package si.development.ahill.beeniusdemo.dependency
 
 import dagger.Component
 import si.development.ahill.beeniusdemo.dependency.modules.DataModule
+import si.development.ahill.beeniusdemo.presentation.albums.AlbumsPresenter
 import si.development.ahill.beeniusdemo.presentation.users.UsersPresenter
 import javax.inject.Singleton
 
@@ -14,4 +15,6 @@ import javax.inject.Singleton
 interface GlobalComponent {
 
     fun inject(target: UsersPresenter)
+
+    fun inject(target: AlbumsPresenter)
 }
