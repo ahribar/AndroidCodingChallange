@@ -1,12 +1,9 @@
 package si.development.ahill.beeniusdemo.global
 
 import android.app.Application
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
-import si.development.ahill.beeniusdemo.data.database.BeeniusDemoDatabase
-import si.development.ahill.beeniusdemo.data.rest.BeeniusDemoServiceFactory
-import si.development.ahill.beeniusdemo.data.rest.services.UserRestService
+import si.development.ahill.beeniusdemo.dependency.DaggerGlobalComponent
+import si.development.ahill.beeniusdemo.dependency.DependencyProvider
+import si.development.ahill.beeniusdemo.dependency.modules.DataModule
 
 /**
  * Created by Andraž Hribar on 4. 11. 2019.
@@ -16,13 +13,12 @@ class BeeniusDemoApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        CoroutineScope(IO).launch {
-            BeeniusDemoServiceFactory().create(UserRestService::class.java).getUsers()
-        }
+        initComponents()
+    }
 
-        val database: BeeniusDemoDatabase = BeeniusDemoDatabase.getInstance(this)
-        CoroutineScope(IO).launch {
-            database.provideUserDao().fetchAll()
-        }
+    private fun initComponents() {
+        DependencyProvider.globalComponent = DaggerGlobalComponent.builder()
+            .dataModule(DataModule(this))
+            .build()
     }
 }
