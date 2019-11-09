@@ -2,4 +2,6 @@
     <string name="app_name">BeeniusDemo</string>
 
     <string name="fragment_users_title">Users</string>
+    <string name="fragment_albums_title_">Albums by %s</string>
+    <string name="fragment_photos_title_">Photos by %s</string>
 </resources>

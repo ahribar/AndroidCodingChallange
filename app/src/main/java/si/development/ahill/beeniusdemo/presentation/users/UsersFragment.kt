@@ -79,8 +79,8 @@ class UsersFragment : Fragment(), UsersContract.View {
         presenter.fetchUsers()
     }
 
-    override fun selectUser(userId: Long) {
-        findNavController().navigate(UsersFragmentDirections.actionUsersToAlbums(userId))
+    override fun selectUser(userId: Long, author: String) {
+        findNavController().navigate(UsersFragmentDirections.actionUsersToAlbums(userId, author))
     }
 
     //endregion UsersContract.View
