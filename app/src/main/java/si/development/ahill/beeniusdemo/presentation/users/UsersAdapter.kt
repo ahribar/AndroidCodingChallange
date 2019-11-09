@@ -16,7 +16,7 @@ import si.development.ahill.beeniusdemo.domain.models.User
  */
 class UsersAdapter(
     val context: Context,
-    private val view: UsersContract.View
+    val view: UsersContract.View
 ) : RecyclerView.Adapter<UsersAdapter.UsersViewHolder>() {
 
     var data: List<User> = listOf()

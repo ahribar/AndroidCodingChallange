@@ -8,9 +8,9 @@ import si.development.ahill.beeniusdemo.domain.models.Photo
  */
 interface PhotoRepository {
 
-    fun getPhotos(): List<Photo>
+    suspend fun getPhotos(): List<Photo>
 
-    fun getPhotosByAlbumId(albumId: Long): List<Photo>
+    suspend fun getPhotosByAlbumId(albumId: Long): List<Photo>
 
-    fun getPhotoById(photoId: Long): Photo?
+    suspend fun getPhotoById(photoId: Long): Photo?
 }
