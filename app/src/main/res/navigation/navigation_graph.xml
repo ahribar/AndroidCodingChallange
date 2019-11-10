@@ -4,11 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
     app:startDestination="@id/usersFragment">
-
     <fragment
         android:id="@+id/usersFragment"
         android:name="si.development.ahill.beeniusdemo.presentation.users.UsersFragment"
-        android:label="fragment_users"
         tools:layout="@layout/fragment_users">
         <action
             android:id="@+id/action_users_to_albums"
@@ -21,7 +19,6 @@
     <fragment
         android:id="@+id/albumsFragment"
         android:name="si.development.ahill.beeniusdemo.presentation.albums.AlbumsFragment"
-        android:label="fragment_albums"
         tools:layout="@layout/fragment_albums">
         <action
             android:id="@+id/action_albums_to_photos"
@@ -41,7 +38,6 @@
     <fragment
         android:id="@+id/photosFragment"
         android:name="si.development.ahill.beeniusdemo.presentation.photos.PhotosFragment"
-        android:label="fragment_photos"
         tools:layout="@layout/fragment_photos">
         <action
             android:id="@+id/action_photos_to_photodetails"
@@ -61,7 +57,10 @@
     <fragment
         android:id="@+id/photoDetailsFragment"
         android:name="si.development.ahill.beeniusdemo.presentation.photodetails.PhotoDetailsFragment"
-        android:label="fragment_photo_details"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_out_right"
+        app:popExitAnim="@anim/slide_in_left"
         tools:layout="@layout/fragment_photo_details">
         <argument
             android:name="photoId"

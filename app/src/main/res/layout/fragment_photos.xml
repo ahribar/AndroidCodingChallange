@@ -34,9 +34,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="TODO"
+            android:drawableTop="@drawable/ic_sentiment_neutral_red"
             android:drawablePadding="8dp"
-            android:text="Empty"
+            android:text="@string/photos_empty_notice"
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
             android:textSize="24sp"
