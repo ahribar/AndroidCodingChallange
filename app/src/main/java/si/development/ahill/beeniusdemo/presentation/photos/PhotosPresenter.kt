@@ -1,14 +1,19 @@
 package si.development.ahill.beeniusdemo.presentation.photos
 
 import si.development.ahill.beeniusdemo.dependency.DependencyProvider
+import si.development.ahill.beeniusdemo.domain.interactors.photo.GetPhotosByAlbumInteractor
 import si.development.ahill.beeniusdemo.domain.models.Photo
 import si.development.ahill.beeniusdemo.domain.structures.Failure
+import javax.inject.Inject
 
 /**
  * Created by Andraž Hribar on 9. 11. 2019.
  * andraz.hribar@gmail.com
  */
 class PhotosPresenter : PhotosContract.Presenter {
+
+    @Inject
+    lateinit var getPhotosByAlbumInteractor: GetPhotosByAlbumInteractor
 
     private var viewModel: PhotosContract.ViewModel? = null
 
@@ -20,6 +25,9 @@ class PhotosPresenter : PhotosContract.Presenter {
 
     override fun fetchPhotos(albumId: Long) {
         viewModel?.setIsLoading(true)
+        getPhotosByAlbumInteractor(GetPhotosByAlbumInteractor.Params.forAlbum(albumId)) {
+            it.either(::handleFailure, ::handlePhotoList)
+        }
     }
 
     override fun bindViewModel(viewModel: PhotosContract.ViewModel) {

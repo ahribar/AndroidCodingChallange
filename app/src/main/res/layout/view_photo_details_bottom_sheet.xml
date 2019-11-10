@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="photo"
+            type="si.development.ahill.beeniusdemo.domain.models.Photo" />
+
+        <variable
+            name="album"
+            type="si.development.ahill.beeniusdemo.domain.models.Album" />
+
+        <variable
+            name="user"
+            type="si.development.ahill.beeniusdemo.domain.models.User" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomSheetDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_bottom_sheet"
+        android:elevation="8dp"
+        android:padding="8dp"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="0dp"
+        app:behavior_skipCollapsed="true"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.2" />
+
+        <TextView
+            android:id="@+id/textPhotoTitleLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Photo:"
+            app:layout_constraintBottom_toBottomOf="@+id/textPhotoTitle"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textPhotoTitle" />
+
+        <TextView
+            android:id="@+id/textPhotoTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="@{photo.title}"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toTopOf="@+id/textAlbumTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textAlbumTitleLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Album:"
+            app:layout_constraintBottom_toBottomOf="@+id/textAlbumTitle"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textAlbumTitle" />
+
+        <TextView
+            android:id="@+id/textAlbumTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="@{album.title}"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toTopOf="@+id/textAuthor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/textPhotoTitle" />
+
+        <TextView
+            android:id="@+id/textAuthorLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Author:"
+            app:layout_constraintBottom_toBottomOf="@+id/textAuthor"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textAuthor" />
+
+        <TextView
+            android:id="@+id/textAuthor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="@{user.name}"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/textAlbumTitle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

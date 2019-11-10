@@ -1,13 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.photodetails.PhotoDetailsFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <variable
+            name="actions"
+            type="si.development.ahill.beeniusdemo.presentation.photodetails.PhotoDetailsContract.View" />
+
+        <variable
+            name="state"
+            type="si.development.ahill.beeniusdemo.presentation.photodetails.PhotoDetailsViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/rootLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:context=".presentation.photodetails.PhotoDetailsFragment">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.ortiz.touchview.TouchImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:contentDescription="TODO"
+                android:focusable="true"
+                android:onClick="@{() -> actions.toggleDetails()}"
+                app:photoImage="@{state.photo.url}"
+                tools:background="@color/colorAccent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/bottomSheet"
+            layout="@layout/view_photo_details_bottom_sheet"
+            app:album="@{state.album}"
+            app:photo="@{state.photo}"
+            app:user="@{state.user}" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
