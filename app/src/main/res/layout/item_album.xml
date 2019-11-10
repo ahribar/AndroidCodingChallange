@@ -42,7 +42,7 @@
             android:layout_width="69dp"
             android:layout_height="69dp"
             android:layout_margin="4dp"
-            android:contentDescription="TODO"
+            android:contentDescription="@string/album_content_description_thumbnail"
             app:albumThumbnail="@{album.thumbnailUrl}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

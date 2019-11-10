@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
         android:clickable="true"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/photo_content_description_thumbnail"
         android:focusable="true"
         android:onClick="@{() -> actions.selectPhoto(photo.id, photo.title)}"
         app:photoThumbnail="@{photo.thumbnailUrl}"

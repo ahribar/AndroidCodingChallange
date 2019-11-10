@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clickable="true"
-                android:contentDescription="TODO"
+                android:contentDescription="@string/photo_details_content_description_photo"
                 android:focusable="true"
                 android:onClick="@{() -> actions.toggleDetails()}"
                 app:photoImage="@{state.photo.url}"

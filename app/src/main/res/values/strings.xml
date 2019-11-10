@@ -5,4 +5,12 @@
     <string name="fragment_albums_title_">Albums by %s</string>
     <string name="fragment_photos_title_">Photos by %s</string>
     <string name="fragment_photo_title">Photo</string>
+    <string name="albums_empty_notice">This user appears\nto have no albums</string>
+    <string name="photos_empty_notice">This album appears\nto be empty</string>
+    <string name="photo_details_bottom_sheet_photo_label">Photo:</string>
+    <string name="photo_details_bottom_sheet_album_label">Album:</string>
+    <string name="photo_details_bottom_sheet_author_label">Author:</string>
+    <string name="photo_details_content_description_photo">The selected photo</string>
+    <string name="album_content_description_thumbnail">The album cover</string>
+    <string name="photo_content_description_thumbnail">The photo</string>
 </resources>
