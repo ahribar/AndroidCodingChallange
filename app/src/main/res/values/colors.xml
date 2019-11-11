@@ -2,6 +2,7 @@
 <resources>
     <color name="beeniusShade">#222222</color>
     <color name="beeniusRed">#FE3636</color>
+    <color name="white">#FFFFFF</color>
 
     <color name="colorPrimary">@color/beeniusShade</color>
     <color name="colorPrimaryDark">#000000</color>

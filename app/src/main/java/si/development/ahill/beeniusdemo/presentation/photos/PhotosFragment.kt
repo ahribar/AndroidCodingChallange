@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.fragment_photos.*
 import si.development.ahill.beeniusdemo.R
 import si.development.ahill.beeniusdemo.databinding.FragmentPhotosBinding
 import si.development.ahill.beeniusdemo.presentation.photodetails.PhotoDetailsFragment
-import si.development.ahill.beeniusdemo.utils.AdaptableGridLayoutManager
+import si.development.ahill.beeniusdemo.utils.adaptablegridlayoutmanager.AdaptableGridLayoutManager
 
 class PhotosFragment : Fragment(), PhotosContract.View {
 
@@ -38,7 +38,10 @@ class PhotosFragment : Fragment(), PhotosContract.View {
         presenter.bindViewModel(viewModel)
         context?.let {
             gridAdapter = PhotosAdapter(it, this@PhotosFragment)
-            recyclerPhotos.layoutManager = AdaptableGridLayoutManager(it)
+            recyclerPhotos.layoutManager =
+                AdaptableGridLayoutManager(
+                    it
+                )
             recyclerPhotos.adapter = gridAdapter
         }
         initDataObservers()
