@@ -14,10 +14,12 @@ import si.development.ahill.beeniusdemo.presentation.contracts.BaseViewModel
 interface PhotoDetailsContract {
 
     interface View : BaseView<ViewModel, Presenter> {
+
         fun toggleDetails()
     }
 
     interface Presenter : BasePresenter<ViewModel> {
+
         fun fetchPhoto(photoId: Long)
 
         fun fetchAlbum(albumId: Long)
@@ -26,6 +28,7 @@ interface PhotoDetailsContract {
     }
 
     interface ViewModel : BaseViewModel {
+
         fun setPhoto(photo: Photo)
 
         fun setAlbum(album: Album)

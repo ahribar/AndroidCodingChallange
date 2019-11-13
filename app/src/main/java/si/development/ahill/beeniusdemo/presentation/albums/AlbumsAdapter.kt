@@ -3,13 +3,9 @@ package si.development.ahill.beeniusdemo.presentation.albums
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import si.development.ahill.beeniusdemo.R
 import si.development.ahill.beeniusdemo.databinding.ItemAlbumBinding
 import si.development.ahill.beeniusdemo.domain.models.Album
@@ -70,19 +66,4 @@ class AlbumsAdapter(
     class AlbumsViewHolder(
         val itemAlbumBinding: ItemAlbumBinding
     ) : RecyclerView.ViewHolder(itemAlbumBinding.root)
-
-    companion object {
-
-        @JvmStatic
-        @BindingAdapter("albumThumbnail")
-        fun displayThumbnail(imageView: ImageView, thumbnailUrl: String?) {
-            Glide.with(imageView.context)
-                .load(thumbnailUrl)
-                .apply(
-                    RequestOptions()
-                        .placeholder(R.drawable.ic_image_placeholder)
-                )
-                .into(imageView)
-        }
-    }
 }

@@ -3,8 +3,8 @@ package si.development.ahill.beeniusdemo.domain.interactors.album
 import si.development.ahill.beeniusdemo.domain.interactors.BaseInteractor
 import si.development.ahill.beeniusdemo.domain.models.Album
 import si.development.ahill.beeniusdemo.domain.repositories.AlbumRepository
-import si.development.ahill.beeniusdemo.domain.structures.Either
-import si.development.ahill.beeniusdemo.domain.structures.Failure
+import si.development.ahill.beeniusdemo.utils.structures.Either
+import si.development.ahill.beeniusdemo.utils.structures.Failure
 import javax.inject.Inject
 
 /**
@@ -23,7 +23,7 @@ class GetAlbumInteractor @Inject constructor(
         }
 
     data class GetAlbumFailure(
-        val exception: Exception
+        override val exception: Exception
     ) : Failure.FeatureFailure(exception)
 
     class Params(

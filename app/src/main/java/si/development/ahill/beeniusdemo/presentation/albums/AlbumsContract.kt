@@ -12,18 +12,21 @@ import si.development.ahill.beeniusdemo.presentation.contracts.BaseViewModel
 interface AlbumsContract {
 
     interface View : BaseView<ViewModel, Presenter> {
+
         fun refreshData()
 
         fun selectAlbum(albumId: Long)
     }
 
     interface Presenter : BasePresenter<ViewModel> {
+
         fun fetchAlbums(userId: Long)
 
         fun fetchThumbnails()
     }
 
     interface ViewModel : BaseViewModel {
+
         fun getAlbumList(): List<Album>
 
         fun setAlbumList(albumList: List<Album>)

@@ -3,8 +3,8 @@ package si.development.ahill.beeniusdemo.domain.interactors.photo
 import si.development.ahill.beeniusdemo.domain.interactors.BaseInteractor
 import si.development.ahill.beeniusdemo.domain.models.Photo
 import si.development.ahill.beeniusdemo.domain.repositories.PhotoRepository
-import si.development.ahill.beeniusdemo.domain.structures.Either
-import si.development.ahill.beeniusdemo.domain.structures.Failure
+import si.development.ahill.beeniusdemo.utils.structures.Either
+import si.development.ahill.beeniusdemo.utils.structures.Failure
 import javax.inject.Inject
 
 /**
@@ -23,6 +23,6 @@ class GetPhotosInteractor @Inject constructor(
         }
 
     data class GetPhotosFailure(
-        val exception: Exception
+        override val exception: Exception
     ) : Failure.FeatureFailure(exception)
 }

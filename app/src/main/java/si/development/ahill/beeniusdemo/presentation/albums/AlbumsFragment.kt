@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -95,6 +96,15 @@ class AlbumsFragment : Fragment(), AlbumsContract.View {
 
     private fun initDataObservers() {
         viewModel.albums.observe(viewLifecycleOwner, Observer { listAdapter?.data = it })
+        viewModel.error.observe(viewLifecycleOwner, Observer {
+            it.read()?.let { message ->
+                showError(message)
+            }
+        })
+    }
+
+    private fun showError(error: String) {
+        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
     }
 
     companion object {

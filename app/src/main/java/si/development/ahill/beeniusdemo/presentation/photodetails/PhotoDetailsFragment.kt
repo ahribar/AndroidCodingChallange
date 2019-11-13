@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -13,8 +12,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.NavigationUI
 import androidx.transition.TransitionManager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.fragment_photo_details.*
 import si.development.ahill.beeniusdemo.R
@@ -86,6 +83,15 @@ class PhotoDetailsFragment : Fragment(), PhotoDetailsContract.View {
             viewLifecycleOwner,
             Observer { setHudVisibility(it) }
         )
+        viewModel.error.observe(viewLifecycleOwner, Observer {
+            it.read()?.let { message ->
+                showError(message)
+            }
+        })
+    }
+
+    private fun showError(error: String) {
+        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
     }
 
     private fun setHudVisibility(isVisible: Boolean) {
@@ -103,19 +109,5 @@ class PhotoDetailsFragment : Fragment(), PhotoDetailsContract.View {
     companion object {
 
         fun newInstance() = PhotoDetailsFragment()
-
-        @JvmStatic
-        @BindingAdapter("photoImage")
-        fun displayImage(imageView: ImageView, thumbnailUrl: String?) {
-            Glide.with(imageView.context)
-                .load(thumbnailUrl)
-                .thumbnail(
-                    Glide.with(imageView.context)
-                        .load(R.drawable.ic_image_placeholder)
-                        .apply(RequestOptions().fitCenter())
-                )
-                .apply(RequestOptions().fitCenter())
-                .into(imageView)
-        }
     }
 }

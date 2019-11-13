@@ -1,0 +1,30 @@
+/**
+ * Versioning format: AABCCDDEE
+ * A - API level
+ * B - Screen size
+ * C - Major version
+ * D - Minor version
+ * E - Patch version
+ */
+
+def targetSdk = 29
+def minSdk = 21
+def screenSize = 0
+def versionMajor = 0
+def versionMinor = 0
+def versionPatch = 0
+def versionBuild = "" // Tag for debug/test builds or any other special snowflakes
+
+ext {
+    TargetSDK = targetSdk
+
+    MinSDK = minSdk
+
+    generateVersionCode = { ->
+        return minSdk * 10000000 + screenSize * 100000 + versionMajor * 10000 + versionMinor * 100 + versionPatch
+    }
+
+    generateVersionName = { ->
+        return "${versionMajor}.${versionMinor}.${versionPatch}${versionBuild}"
+    }
+}
