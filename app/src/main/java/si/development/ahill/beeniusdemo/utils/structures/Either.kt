@@ -1,4 +1,4 @@
-package si.development.ahill.beeniusdemo.domain.structures
+package si.development.ahill.beeniusdemo.utils.structures
 
 /**
  * Created by Andraž Hribar on 8. 11. 2019.

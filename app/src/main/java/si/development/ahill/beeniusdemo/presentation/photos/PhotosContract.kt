@@ -12,16 +12,19 @@ import si.development.ahill.beeniusdemo.presentation.contracts.BaseViewModel
 interface PhotosContract {
 
     interface View : BaseView<ViewModel, Presenter> {
+
         fun refreshData()
 
         fun selectPhoto(photoId: Long, photoTitle: String)
     }
 
     interface Presenter : BasePresenter<ViewModel> {
+
         fun fetchPhotos(albumId: Long)
     }
 
     interface ViewModel : BaseViewModel {
+
         fun setPhotoList(photoList: List<Photo>)
 
         fun setIsLoading(isLoading: Boolean)

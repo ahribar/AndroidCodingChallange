@@ -4,8 +4,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import si.development.ahill.beeniusdemo.domain.structures.Either
-import si.development.ahill.beeniusdemo.domain.structures.Failure
+import si.development.ahill.beeniusdemo.utils.structures.Either
+import si.development.ahill.beeniusdemo.utils.structures.Failure
 
 /**
  * Created by Andraž Hribar on 8. 11. 2019.

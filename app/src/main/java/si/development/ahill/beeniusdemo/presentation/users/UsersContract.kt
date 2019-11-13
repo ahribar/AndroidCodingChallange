@@ -12,16 +12,19 @@ import si.development.ahill.beeniusdemo.presentation.contracts.BaseViewModel
 interface UsersContract {
 
     interface View : BaseView<ViewModel, Presenter> {
+
         fun refreshData()
 
         fun selectUser(userId: Long, author: String)
     }
 
     interface Presenter : BasePresenter<ViewModel> {
+
         fun fetchUsers()
     }
 
     interface ViewModel : BaseViewModel {
+
         fun setUsers(userList: List<User>)
 
         fun setIsLoading(isLoading: Boolean)

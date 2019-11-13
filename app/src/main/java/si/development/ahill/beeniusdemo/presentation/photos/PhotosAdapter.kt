@@ -3,13 +3,9 @@ package si.development.ahill.beeniusdemo.presentation.photos
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import si.development.ahill.beeniusdemo.R
 import si.development.ahill.beeniusdemo.databinding.ItemPhotoBinding
 import si.development.ahill.beeniusdemo.domain.models.Photo
@@ -72,29 +68,4 @@ class PhotosAdapter(
     class PhotosViewHolder(
         val itemPhotoBinding: ItemPhotoBinding
     ) : RecyclerView.ViewHolder(itemPhotoBinding.root)
-
-    companion object {
-
-        @JvmStatic
-        @BindingAdapter("photoThumbnail")
-        fun displayThumbnail(imageView: ImageView, thumbnailUrl: String?) {
-            Glide.with(imageView.context)
-                .load(thumbnailUrl)
-                .thumbnail(
-                    Glide.with(imageView.context)
-                        .load(R.drawable.ic_image_placeholder)
-                        .apply(
-                            RequestOptions()
-                                .dontAnimate()
-                                .fitCenter()
-                        )
-                )
-                .apply(
-                    RequestOptions()
-                        .dontAnimate()
-                        .fitCenter()
-                )
-                .into(imageView)
-        }
-    }
 }

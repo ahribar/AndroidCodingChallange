@@ -7,7 +7,7 @@ import si.development.ahill.beeniusdemo.domain.interactors.user.GetUserInteracto
 import si.development.ahill.beeniusdemo.domain.models.Album
 import si.development.ahill.beeniusdemo.domain.models.Photo
 import si.development.ahill.beeniusdemo.domain.models.User
-import si.development.ahill.beeniusdemo.domain.structures.Failure
+import si.development.ahill.beeniusdemo.utils.structures.Failure
 import javax.inject.Inject
 
 /**
@@ -79,12 +79,12 @@ class PhotoDetailsPresenter : PhotoDetailsContract.Presenter {
 
     private fun handleFailure(failure: Failure) {
         when (failure) {
-            is GetPhotoInteractor.GetPhotosFailure -> {
-            }
-            is GetAlbumInteractor.GetAlbumFailure -> {
-            }
-            is GetUserInteractor.GetUsersFailure -> {
-            }
+            is GetPhotoInteractor.GetPhotosFailure ->
+                viewModel?.setError(failure.exception.toString())
+            is GetAlbumInteractor.GetAlbumFailure ->
+                viewModel?.setError(failure.exception.toString())
+            is GetUserInteractor.GetUsersFailure ->
+                viewModel?.setError(failure.exception.toString())
         }
     }
 }

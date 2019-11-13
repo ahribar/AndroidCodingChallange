@@ -5,7 +5,7 @@ import si.development.ahill.beeniusdemo.domain.interactors.album.GetAlbumsIntera
 import si.development.ahill.beeniusdemo.domain.interactors.photo.GetPhotosInteractor
 import si.development.ahill.beeniusdemo.domain.models.Album
 import si.development.ahill.beeniusdemo.domain.models.Photo
-import si.development.ahill.beeniusdemo.domain.structures.Failure
+import si.development.ahill.beeniusdemo.utils.structures.Failure
 import javax.inject.Inject
 
 /**
@@ -68,11 +68,13 @@ class AlbumsPresenter : AlbumsContract.Presenter {
     }
 
     private fun handleFailure(failure: Failure) {
-        viewModel?.setIsLoading(false)
-        when (failure) {
-            is GetAlbumsInteractor.GetAlbumsFailure -> {
-            }
-            is GetPhotosInteractor.GetPhotosFailure -> {
+        viewModel?.let {
+            it.setIsLoading(false)
+            when (failure) {
+                is GetAlbumsInteractor.GetAlbumsFailure ->
+                    it.setError(failure.exception.toString())
+                is GetPhotosInteractor.GetPhotosFailure ->
+                    it.setError(failure.exception.toString())
             }
         }
     }

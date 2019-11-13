@@ -6,12 +6,17 @@ import androidx.lifecycle.ViewModel
 import si.development.ahill.beeniusdemo.domain.models.Album
 import si.development.ahill.beeniusdemo.domain.models.Photo
 import si.development.ahill.beeniusdemo.domain.models.User
+import si.development.ahill.beeniusdemo.utils.structures.SelfDestructibleMessage
 
 /**
  * Created by Andraž Hribar on 10. 11. 2019.
  * andraz.hribar@gmail.com
  */
 class PhotoDetailsViewModel : ViewModel(), PhotoDetailsContract.ViewModel {
+
+    private val _error = MutableLiveData<SelfDestructibleMessage<String>>()
+    val error: LiveData<SelfDestructibleMessage<String>>
+        get() = _error
 
     private val _photo = MutableLiveData<Photo?>()
     val photo: LiveData<Photo?>
@@ -45,6 +50,10 @@ class PhotoDetailsViewModel : ViewModel(), PhotoDetailsContract.ViewModel {
 
     override fun setDetailsVisibility(isVisible: Boolean) {
         _areDetailsVisible.value = isVisible
+    }
+
+    override fun setError(error: String) {
+        _error.value = SelfDestructibleMessage(error)
     }
 
     //endregion PhotoDetailsContract.ViewModel

@@ -3,7 +3,7 @@ package si.development.ahill.beeniusdemo.presentation.users
 import si.development.ahill.beeniusdemo.dependency.DependencyProvider
 import si.development.ahill.beeniusdemo.domain.interactors.user.GetUsersInteractor
 import si.development.ahill.beeniusdemo.domain.models.User
-import si.development.ahill.beeniusdemo.domain.structures.Failure
+import si.development.ahill.beeniusdemo.utils.structures.Failure
 import javax.inject.Inject
 
 /**
@@ -50,6 +50,11 @@ class UsersPresenter : UsersContract.Presenter {
     }
 
     private fun handleFailure(failure: Failure) {
-        viewModel?.setIsLoading(false)
+        viewModel?.let {
+            it.setIsLoading(false)
+            if (failure is GetUsersInteractor.GetUsersFailure) {
+                it.setError(failure.exception.toString())
+            }
+        }
     }
 }

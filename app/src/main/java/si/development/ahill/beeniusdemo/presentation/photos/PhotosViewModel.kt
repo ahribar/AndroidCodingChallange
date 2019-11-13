@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import si.development.ahill.beeniusdemo.domain.models.Photo
+import si.development.ahill.beeniusdemo.utils.structures.SelfDestructibleMessage
 
 /**
  * Created by Andraž Hribar on 9. 11. 2019.
@@ -13,8 +14,11 @@ import si.development.ahill.beeniusdemo.domain.models.Photo
 class PhotosViewModel : ViewModel(), PhotosContract.ViewModel {
 
     val isLoading = ObservableBoolean()
-
     val isEmpty = ObservableBoolean()
+
+    private val _error = MutableLiveData<SelfDestructibleMessage<String>>()
+    val error: LiveData<SelfDestructibleMessage<String>>
+        get() = _error
 
     private val _photos = MutableLiveData<List<Photo>>()
     val photos: LiveData<List<Photo>>
@@ -29,6 +33,10 @@ class PhotosViewModel : ViewModel(), PhotosContract.ViewModel {
 
     override fun setIsLoading(isLoading: Boolean) {
         this.isLoading.set(isLoading)
+    }
+
+    override fun setError(error: String) {
+        _error.value = SelfDestructibleMessage(error)
     }
 
     //endregion PhotosContract.ViewModel
